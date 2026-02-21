@@ -4,7 +4,9 @@
 
 const SERVER_HOST = ‘wolfhouse.dat.airforce’;
 const SERVER_PORT = 17982;
-const API_URL = `https://api.mcsrvstat.us/3/${SERVER_HOST}:${SERVER_PORT}`;
+
+// Use the 2/ endpoint — more browser friendly, no special headers needed
+const API_URL = `https://api.mcsrvstat.us/2/${SERVER_HOST}:${SERVER_PORT}`;
 
 // ── After splash, reveal the app ──
 window.addEventListener(‘load’, () => {
@@ -14,7 +16,7 @@ fetchServerData();
 }, 3200);
 });
 
-// ── Fetch server data from mcsrvstat ──
+// ── Fetch server data ──
 async function fetchServerData() {
 const statusDot = document.getElementById(‘statusDot’);
 const playerCount = document.getElementById(‘playerCount’);
@@ -23,21 +25,13 @@ const playerBar = document.getElementById(‘playerBar’);
 const playerList = document.getElementById(‘playerList’);
 const lastUpdated = document.getElementById(‘lastUpdated’);
 
-// Loading state
 playerList.innerHTML = ` <div class="loading-state"> <span class="loading-dots">Fetching pack members<span class="dots"></span></span> </div>`;
 
 try {
-const res = await fetch(API_URL, {
-method: ‘GET’,
-headers: {
-‘User-Agent’: ‘WolfSMP-App/1.0’
-}
-});
+const res = await fetch(API_URL);
 
 ```
-if (!res.ok) {
-  throw new Error(`HTTP error: ${res.status}`);
-}
+if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
 const data = await res.json();
 
@@ -86,7 +80,7 @@ if (data.online) {
 ```
 
 } catch (err) {
-console.error(‘Failed to fetch server data:’, err);
+console.error(‘Wolf SMP fetch error:’, err);
 statusDot.className = ‘status-dot offline’;
 playerCount.textContent = ‘?’;
 playerMax.textContent = ‘?’;
@@ -129,11 +123,11 @@ return String(str)
 .replace(/”/g, ‘"’);
 }
 
-// ── Register service worker for PWA ──
+// ── Service worker ──
 if (‘serviceWorker’ in navigator) {
 window.addEventListener(‘load’, () => {
 navigator.serviceWorker.register(‘service-worker.js’)
-.then(reg => console.log(‘Wolf SMP SW registered:’, reg.scope))
-.catch(err => console.log(‘SW registration failed:’, err));
+.then(reg => console.log(‘SW registered:’, reg.scope))
+.catch(err => console.log(‘SW failed:’, err));
 });
 }
