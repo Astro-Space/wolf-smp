@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Wolf SMP" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/wolf-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <title>Wolf SMP</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- SPLASH SCREEN -->
+  <div id="splash">
+    <div class="splash-inner">
+      <div class="splash-emblem">
+        <div class="emblem-ring outer"></div>
+        <div class="emblem-ring inner"></div>
+        <div class="wolf-icon-wrap">🐺</div>
+      </div>
+      <h1 class="splash-title">WOLF SMP</h1>
+      <div class="splash-line"></div>
+      <p class="splash-sub">Enter the Pack</p>
+    </div>
+  </div>
+
+  <!-- MAIN APP -->
+  <div id="app" class="hidden">
+
+    <!-- Background texture -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-emblem">🐺</div>
+      <div class="header-text">
+        <span class="header-label">MINECRAFT SERVER</span>
+        <h1 class="header-title">WOLF SMP</h1>
+      </div>
+      <div class="status-dot-wrap">
+        <span class="status-dot" id="statusDot"></span>
+      </div>
+    </header>
+
+    <!-- Server Card -->
+    <section class="server-card">
+      <div class="card-corner tl"></div>
+      <div class="card-corner tr"></div>
+      <div class="card-corner bl"></div>
+      <div class="card-corner br"></div>
+
+      <div class="mc-icon">⛏️</div>
+      <h2 class="server-name">Wolf SMP</h2>
+      <p class="server-edition">Bedrock Edition</p>
+
+      <div class="server-info">
+        <div class="info-row">
+          <span class="info-label">IP ADDRESS</span>
+          <span class="info-value" id="copyIp">wolfhouse.dat.airforce</span>
+          <button class="copy-btn" onclick="copyText('wolfhouse.dat.airforce', this)">COPY</button>
+        </div>
+        <div class="divider"></div>
+        <div class="info-row">
+          <span class="info-label">PORT</span>
+          <span class="info-value">19132</span>
+          <button class="copy-btn" onclick="copyText('19132', this)">COPY</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Player Count -->
+    <section class="players-section">
+      <div class="players-header">
+        <h3 class="section-title">PLAYERS ONLINE</h3>
+        <div class="player-count-badge">
+          <span id="playerCount">—</span>
+          <span class="count-sep">/</span>
+          <span id="playerMax">—</span>
+        </div>
+      </div>
+
+      <div class="player-bar-wrap">
+        <div class="player-bar" id="playerBar"></div>
+      </div>
+
+      <div class="player-list" id="playerList">
+        <div class="loading-state">
+          <span class="loading-dots">Fetching pack members<span class="dots"></span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <span>Last updated: <span id="lastUpdated">—</span></span>
+      <button class="refresh-btn" onclick="fetchServerData()">↻ Refresh</button>
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

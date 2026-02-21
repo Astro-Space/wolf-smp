@@ -1,0 +1,22 @@
+{
+  "name": "Wolf SMP",
+  "short_name": "Wolf SMP",
+  "description": "Your Minecraft server dashboard for Wolf SMP",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icons/wolf-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/wolf-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
