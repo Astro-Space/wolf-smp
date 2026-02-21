@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────
 
 const SERVER_HOST = 'wolfhouse.dat.airforce';
-const SERVER_PORT = 19132;
+const SERVER_PORT = 17982;
 const API_URL = `https://api.mcsrvstat.us/bedrock/3/${SERVER_HOST}`;
 
 // ── After splash, reveal the app ──
